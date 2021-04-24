@@ -13,6 +13,6 @@ const expenseSchema = new mongoose.Schema({
         type: Date,
         required: true
     }
-});
+},{timestamps: true});
 
-module.exports = mongoose.Model('Expense', expenseSchema);
+module.exports = mongoose.model('Expense', expenseSchema);
