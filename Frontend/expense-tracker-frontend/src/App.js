@@ -1,34 +1,28 @@
+import {useState, useEffect} from 'react';
 import Expenses from './components/Expenses/Expenses';
 import './App.css';
 
 function App() {
-  
-  //Will be removed after backend is available.
-  const DUMMY_EXPENSES = [
-    {
-      id: 'e1',
-      title: 'Toilet Paper',
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: 'e3',
-      title: 'Car Insurance',
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: 'e4',
-      title: 'New Desk (Wooden)',
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+  const [expenseList, setExpenseList] = useState([]);
+  useEffect(() => {
+    let statusCode;
+    fetch('http://localhost:3000/expense')
+    .then(res => {
+      statusCode = res.status;
+      return res.json();
+    })
+    .then(resData => {
+      if(statusCode === 200)
+        setExpenseList(resData.expenses);
+      else
+        console.log('Error occured');
+    })
+    .catch(err => console.log(err));
+  },[]);
   
   return (
     <div>
-      <Expenses expenses={DUMMY_EXPENSES}/> 
+      <Expenses expenses={expenseList}/> 
     </div>
   );
 }
