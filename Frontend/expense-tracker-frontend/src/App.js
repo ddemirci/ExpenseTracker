@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import Expenses from './components/Expenses/Expenses';
 import './App.css';
 
 function App() {
@@ -26,17 +26,9 @@ function App() {
     },
   ];
   
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
-
-  const addExpenseHandler = expense => {
-    setExpenses(prevState => {
-      return[expense, ...prevState];
-    });
-  }
-  
   return (
     <div>
-
+      <Expenses expenses={DUMMY_EXPENSES}/> 
     </div>
   );
 }
