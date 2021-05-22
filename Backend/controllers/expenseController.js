@@ -9,7 +9,11 @@ exports.addExpense = async (req,res,next) => {
     const title = req.body.title;
     const amount = req.body.amount;
     const date = req.body.date;
-    
+
+    //Control will be done by middleware
+    if(title === undefined || amount === undefined || date === undefined)
+        return res.status(500);
+
     const expense = new Expense({
         title: title,
         amount: amount,
@@ -20,7 +24,6 @@ exports.addExpense = async (req,res,next) => {
     {
         await expense.save();
         return res.status(201).json({expense: expense});
-
     } catch(err){
         return res.status(500).json({err});
     }
