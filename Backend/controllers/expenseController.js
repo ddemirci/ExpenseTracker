@@ -36,10 +36,11 @@ exports.addExpense = async (req,res,next) => {
  */
 exports.getExpenses = async (req,res,next) => {
     
-    let month = req.body.month;
-    let year = req.body.year;
-    
-    if(month === undefined || year === undefined)
+    let month = Number(req.query.month);
+    let year = Number(req.query.year);
+
+    if( month === undefined ||  isNaN(month) || 
+        year === undefined || isNaN(year))
     {
         let now = new Date();
         month = now.getMonth();
