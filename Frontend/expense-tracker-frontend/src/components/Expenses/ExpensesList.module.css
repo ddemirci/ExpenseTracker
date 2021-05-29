@@ -7,3 +7,14 @@
     color: white;
     text-align: center;
   }
+
+  .expenses_list__total{
+    color: #ddb3f8;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid white;
+    background-color: #40005d;
+    border-radius: 12px;
+    width: 25%;
+    padding: 0 10%;
+  }
