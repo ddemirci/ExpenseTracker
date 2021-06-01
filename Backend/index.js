@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER_NAME}/${process.env.MONGO_DEFAULT_DATABASE}`
+const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER_NAME}/${process.env.MONGO_DEFAULT_DATABASE}?ssl=true&replicaSet=atlas-hrp117-shard-0&authSource=admin&retryWrites=true&w=majority`
 
 // ======== CORS Policy =======
 const allowedPort = process.env.ALLOWED_ORIGIN_PORT;
