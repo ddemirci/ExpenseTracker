@@ -11,4 +11,7 @@ router.get('/',expenseController.getExpenses);
 //POST /expense => Add an expense.
 router.post('/', expenseController.addExpense);
 
+//PUT /expense/id => Update an expense.
+router.put('/:id', expenseController.updateExpense);
+
 module.exports = router;

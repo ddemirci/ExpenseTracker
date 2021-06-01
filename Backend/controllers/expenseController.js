@@ -66,3 +66,38 @@ exports.getExpenses = async (req,res,next) => {
         .then(product => res.status(200).json({product}))
         .catch(err => res.status(500).json({err}));
 }
+
+/**
+ * 
+ * Updating an expense
+ * @returns updated expense
+ */
+exports.updateExpense = async (req,res,next) => {
+    const expenseId = req.params.id;
+
+    const title = req.body.title;
+    const amount = req.body.amount;
+    const date = req.body.date;
+
+    //Control will be done by middleware
+    if(title === undefined || amount === undefined || date === undefined)
+        return res.status(500);
+
+    try
+    {
+        let expense = await Expense.findById(expenseId);
+        if(!expense)
+            return res.status(404).json({message: "Expense not found"});
+
+        expense.title = title;
+        expense.amount = amount;
+        expense.date = date;
+        
+        await expense.save();
+        return res.status(200).json({expense: expense, message: "Expense is updated"});
+    }
+    catch(err)
+    {
+        return res.status(500).json({err});
+    }  
+}
