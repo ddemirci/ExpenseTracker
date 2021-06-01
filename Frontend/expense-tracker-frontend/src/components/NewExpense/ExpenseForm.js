@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import classes from './ExpenseForm.module.css';
 
+const todayDateString = () => {
+    return new Date().toISOString().substring(0,10);
+}
+
 const ExpenseForm = (props) => {
     const [title,setTitle] = useState('');
     const [amount,setAmount] = useState('');
-    const [date,setDate] = useState('');
+    const [date,setDate] = useState(todayDateString);
 
     const titleChangeHandler = (event) => {
         setTitle(event.target.value);
@@ -29,7 +33,7 @@ const ExpenseForm = (props) => {
         //Clear the form
         setTitle('');
         setAmount('');
-        setDate('');
+        setDate(todayDateString);
     }
 
     return (
