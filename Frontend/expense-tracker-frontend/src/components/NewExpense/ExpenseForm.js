@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classes from './ExpenseForm.module.css';
+import Input from '../UI/Input/Input';
 
 const todayDateString = () => {
     return new Date().toISOString().substring(0,10);
@@ -39,18 +40,9 @@ const ExpenseForm = (props) => {
     return (
     <form onSubmit={submitHandler}>
         <div className= {classes.new_expense__controls}>
-            <div className= {classes.new_expense__control}>
-                <label>Title</label>
-                <input value={title} type='text' onChange={titleChangeHandler}/>
-            </div>
-            <div className={classes.new_expense__control}>
-                <label>Amount</label>
-                <input value={amount} type='number' min="0.01" step="0.01" onChange={amountChangeHandler}/>
-            </div>
-            <div className={classes.new_expense__control}>
-                <label>Date</label>
-                <input value= {date} type='date' min="2019-01-01" onChange={dateChangeHandler}/>
-            </div>
+            <Input className={classes.new_expense__control} label='Title' value={title} type='text' onChangeHandler={titleChangeHandler}/>
+            <Input className={classes.new_expense__control} label='Amount' value={amount} type='number' min="0.01" step="0.01" onChangeHandler={amountChangeHandler}/>
+            <Input className={classes.new_expense__control} label='Date' value={date} type='date' min="2019-01-01" onChangeHandler={dateChangeHandler}/>
         </div>
         <div className={classes.new_expense__actions}>
             <button type="button" onClick={props.onCancel}>Cancel</button>
