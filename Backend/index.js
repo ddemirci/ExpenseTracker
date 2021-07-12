@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const expenseRouter = require('./routes/expenseRouter');
+const authRouter = require('./routes/authRouter');
 require('dotenv').config();
 
 const app = express();
@@ -30,6 +31,7 @@ app.all('*', cors(corsOptions), function (req, res, next) {
 
 app.use(express.json());
 app.use('/expense', expenseRouter);
+app.use('/', authRouter);
 
 mongoose.connect(MONGODB_URI)
     .then(() => {
